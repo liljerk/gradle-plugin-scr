@@ -106,12 +106,11 @@ class ScrPlugin implements Plugin<Project> {
     @TypeChecked(TypeCheckingMode.SKIP)
     private void validateReferences(Project project, List<File> files) {
         def errorMessage = ""
-
+        def classLoader = loadClassPaths(project)
         for (file in files) {
             def component = new XmlSlurper().parse(file)
             for (references in component.reference) {
-                errorMessage = generateErrorMsg(errorMessage, (String)references.@interface.text(), (String)component.@name.text(),
-                    loadClassPaths(project))
+                errorMessage = generateErrorMsg(errorMessage, (String)references.@interface.text(), (String)component.@name.text(), classLoader)
             }
         }
 
