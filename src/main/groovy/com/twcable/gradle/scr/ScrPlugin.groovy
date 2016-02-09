@@ -122,11 +122,11 @@ class ScrPlugin implements Plugin<Project> {
 
     private String generateErrorMsg(String errorMessage, String interfaceName, String className, ClassLoader classLoader) {
         try {
-            def clas = classLoader.loadClass(interfaceName)
+            /*def clas = classLoader.loadClass(interfaceName)
 
             if (!clas.isInterface()) {
                 errorMessage += "\n${className} has an @Reference to ${interfaceName}, but it is not an interface."
-            }
+            }*/
         }
         catch (ClassNotFoundException ignored) {
             errorMessage += "\n${className} has an @Reference to ${interfaceName} that could not be found by the class loader."
